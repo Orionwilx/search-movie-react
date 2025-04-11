@@ -6,11 +6,15 @@ function App() {
   const movie = responseApi.Search;
   const hasmovie = movie.length > 0;
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <header>
         <h1>Search movie</h1>
-        <form className="search-form">
+        <form className="search-form" onSubmit={handleSubmit}>
           <input type="text" placeholder="Avengers, Sherk, Need For Speed..." />
           <button>Search</button>
         </form>
@@ -28,7 +32,7 @@ function App() {
             ))}
           </ul>
         ) : (
-          <p>No se encontraron coincidencias</p>
+          <p>No se encontaro coincidencias</p>
         )}
       </main>
     </>
