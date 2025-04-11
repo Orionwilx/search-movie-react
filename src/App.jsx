@@ -1,10 +1,10 @@
 import "./App.css";
+import { ListofMovieResult } from "./components/ListofMovie";
 import responseApi from "./mocks/with-result.json";
-import responseFail from "./mocks/with-nonresult.json";
+// import responseFail from "./mocks/with-nonresult.json";
 
 function App() {
   const movie = responseApi.Search;
-  const hasmovie = movie.length > 0;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,19 +21,7 @@ function App() {
       </header>
 
       <main>
-        {hasmovie ? (
-          <ul>
-            {movie.map((movie) => (
-              <li key={movie.imdbID}>
-                <h3>{movie.Title}</h3>
-                <p>{movie.Year}</p>
-                <img src={movie.Poster} alt={movie.Title} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No se encontaro coincidencias</p>
-        )}
+        <ListofMovieResult movie={movie} />
       </main>
     </>
   );
