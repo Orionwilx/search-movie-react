@@ -28,7 +28,7 @@ function App() {
             ))}
           </ul>
         ) : (
-          <p>no se encontaro coincidencias</p>
+          <p>No se encontraron coincidencias</p>
         )}
       </main>
     </>
