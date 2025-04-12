@@ -1,10 +1,10 @@
 import "./App.css";
 import { ListofMovieResult } from "./components/ListofMovie";
-import responseApi from "./mocks/with-result.json";
+import { useMovies } from "./hooks/useMovies";
 // import responseFail from "./mocks/with-nonresult.json";
 
 function App() {
-  const movie = responseApi.Search;
+  const { movies } = useMovies();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,7 +21,7 @@ function App() {
       </header>
 
       <main>
-        <ListofMovieResult movie={movie} />
+        <ListofMovieResult movie={movies} />
       </main>
     </>
   );
