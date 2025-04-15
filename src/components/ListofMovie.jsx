@@ -3,8 +3,8 @@ function ListofMovie({ movie }) {
     <ul>
       {movie.map((movie) => (
         <li key={movie.id}>
-          <h3>{movie.title}</h3>
-          <p>{movie.year}</p>
+          <h3 className="h3">{movie.title}</h3>
+          <p className="text-surface-300">{movie.year}</p>
           <img src={movie.poster} alt={movie.title} />
         </li>
       ))}
