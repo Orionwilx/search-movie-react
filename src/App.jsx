@@ -2,7 +2,6 @@ import "./App.css";
 import { ListofMovieResult } from "./components/ListofMovie";
 import { useMovies } from "./hooks/useMovies";
 import { useEffect, useRef, useState } from "react";
-// import responseFail from "./mocks/with-nonresult.json";
 
 function useSearchMovies() {
   const [query, setQuery] = useState("");
@@ -36,12 +35,12 @@ function useSearchMovies() {
 }
 
 function App() {
-  const { movies } = useMovies();
   const { query, setQuery, error } = useSearchMovies();
+  const { movies, getMovies } = useMovies({ query });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const fields = Object.fromEntries(new window.FormData(event.target));
+    getMovies();
   };
 
   const handleChange = (e) => {
@@ -66,8 +65,8 @@ function App() {
 
             <button className="ig-btn preset-filled">Search</button>
           </div>
-          {error && <p className="text-red-500">{error}</p>}
         </form>
+        {error && <p className="text-red-500">{error}</p>}
       </header>
 
       <main>
