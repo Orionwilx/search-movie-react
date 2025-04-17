@@ -29,6 +29,7 @@ function useSearchMovies() {
       setError("No puede ser solo numeros");
       return;
     }
+    return setError(null);
   }, [query]);
 
   return { query, setQuery, error };
