@@ -37,17 +37,20 @@ function useSearchMovies() {
 
 function App() {
   const { query, setQuery, error } = useSearchMovies();
-  const { movies, getMovies } = useMovies({ query });
+  const { movies, loading, getMovies } = useMovies({ query });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getMovies();
+    getMovies({ query });
   };
 
   const handleChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
+    setQuery(e.target.value);
   };
+
+  useEffect(() => {
+    console.log("Component mounted");
+  }, [getMovies]);
 
   return (
     <>
@@ -67,6 +70,7 @@ function App() {
             <button className="ig-btn preset-filled">Search</button>
           </div>
         </form>
+        {loading && <p className="text-surface-300">Loading...</p>}
         {error && <p className="text-red-500">{error}</p>}
       </header>
 
