@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/05f08444-46dc-422b-abc3-a8e6ac9727aa)
+
+
 # Cine Search 🎬
 
 A simple web application built with React and Vite that allows users to search for movies using the [OMDB API](http://www.omdbapi.com/).
