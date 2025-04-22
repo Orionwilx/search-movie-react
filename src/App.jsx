@@ -1,7 +1,8 @@
 import "./App.css";
 import { ListofMovieResult } from "./components/ListofMovie";
 import { useMovies } from "./hooks/useMovies";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import debounce from "just-debounce-it";
 
 function useSearchMovies() {
   const [query, setQuery] = useState("");
@@ -39,18 +40,23 @@ function App() {
   const { query, setQuery, error } = useSearchMovies();
   const { movies, loading, getMovies } = useMovies({ query });
 
+  const debounceGetMovies = useCallback(
+    debounce((query) => {
+      getMovies({ query });
+    }, 400),
+    [getMovies]
+  );
+
   const handleSubmit = (event) => {
     event.preventDefault();
     getMovies({ query });
   };
 
   const handleChange = (e) => {
-    setQuery(e.target.value);
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    debounceGetMovies(newQuery);
   };
-
-  useEffect(() => {
-    console.log("Component mounted");
-  }, [getMovies]);
 
   return (
     <>

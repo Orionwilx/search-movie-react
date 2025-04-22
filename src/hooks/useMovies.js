@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useCallback } from "react";
 import { searchMovie } from "../services/movies";
 
 // O si quieres usar directamente la variable de entorno:
@@ -10,8 +10,7 @@ export function useMovies({ query }) {
   const [error, setError] = useState(null);
   const previusQuery = useRef(query);
 
-  const getMovies = useMemo(() => {
-    return async ({query}) => {
+  const getMovies = useCallback(async ({query}) => {
       if (query === previusQuery.current) return;
       try {
         setLoading(true);
@@ -24,8 +23,7 @@ export function useMovies({ query }) {
       } finally {
         setLoading(false);
       }
-    };
-  }, []);
+    },[]);
 
   return { movies, getMovies, loading, error };
 }
